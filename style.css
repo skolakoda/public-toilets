@@ -1,0 +1,41 @@
+#map {
+    margin-top: 10px;
+    height: 730px;
+    width: 730px;
+  }
+
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #c4edb4;
+}
+
+li {
+    float: left;
+    padding-left: 150px;
+}
+
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+li a:hover {
+  background-color: #bdecaa;
+    color: #4db5e6;
+    text-decoration: none;
+}
+
+.first{
+   margin-left: 370px;
+}
