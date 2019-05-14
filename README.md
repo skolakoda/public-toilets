@@ -7,7 +7,7 @@ The purpose of the application is to learn the work in the team, as well as mast
 techniques in building a web application.
 
 ### Technics used
-Vanilla JS
+Vanilla JS,
 Bootstrap 4
 
 ##### License
