@@ -21,11 +21,17 @@
                 <li><a id="myList3" href="pictures.html">Pictures</a></li>
                 <li><a id="myList4" href="interesting.html">Interesting</a></li>
                 <li><a id="myList5" href="about.html">About</a></li>
-            </ul>            
+            </ul>                     
     <div class="row">
         <div id="left" class="col-5">
             <h1 class="text-center mt-5">Map Content</h1>
-            <button id="my_location">Current location</button>
+            <button id="my_location">My Location <img src="https://img.icons8.com/metro/26/000000/define-location.png"></button>            
+            <form id="myForm" method="POST" action="http://localhost:3000/dodaj-lokaciju" style="width: 170px">
+                <input placeholder="Naziv lokacije" name="naziv"></input>
+                <input placeholder="Opis lokacije" name="opis"></input>
+                <input placeholder="Slika lokacije" name="slika" type="text">
+                <button id="btnDodaj">Add location</button>
+            </form>
         </div>
         <div id="right" class="col-7">
             <div id="map">
@@ -36,6 +42,7 @@
     <script src="main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&callback=initMap"
         async defer></script>
+    <script type="text/javascript" src="add_location.js"></script>    
 </body>
 
 </html>

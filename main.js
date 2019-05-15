@@ -64,8 +64,8 @@ function initMap() {
         };
         
         infoWindow.setPosition(pos);
-        infoWindow.setContent('Location found.');
-        infoWindow.open(map);
+       //infoWindow.setContent('Location found.');
+       // infoWindow.open(map);
         map.setCenter(pos);
 
         var lokacija = {lat: pos.lat, lng: pos.lng};
