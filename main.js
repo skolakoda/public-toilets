@@ -90,6 +90,37 @@ function initMap() {
 
 }
 
+
+const url = "http//localhost:8080/dodaj-lokaciju";
+const myForm = document.getElementById("myForm");
+let dataToSend = document.getElementById("ime").value;
+
+myForm.addEventListener("submit", (event) => {
+  console.log("click");    
+  console.log(dataToSend);
+    
+  event.preventDefault();
+
+  // const formData = new FormData(dataToSend);
+  // console.log(formData);
+  fetch(url, {
+    method: "post",
+    body: dataToSend,    
+    headers: {
+      "Accept": "aplication/jason, text/plain, */*",
+      "Content-type": "text/plain"
+  }
+  })
+  .then( (response) => {    
+    return response.text();
+  } )
+  .then( (odgovor) => {
+    console.log("Odgovor: " + odgovor);    
+  })
+  .catch( (error) => {
+    console.log(error);    
+  } )
+})
   // Get current location
 /* let x = document.getElementById("demo");
 function getLocation() {

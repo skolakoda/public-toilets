@@ -27,9 +27,11 @@
             <h1 class="text-center mt-5">Map Content</h1>
             <button id="my_location">My Location <img src="https://img.icons8.com/metro/26/000000/define-location.png"></button>            
             <form id="myForm" method="POST" action="http://localhost:3000/dodaj-lokaciju" style="width: 170px">
-                <input placeholder="Naziv lokacije" name="naziv"></input>
-                <input placeholder="Opis lokacije" name="opis"></input>
-                <input placeholder="Slika lokacije" name="slika" type="text">
+                <input id="naziv_lokacije" placeholder="Naziv lokacije" name="naziv">
+                <input id="opis_lokacije" placeholder="Opis lokacije" name="opis">
+                <input id="url_like" placeholder="Slika lokacije" name="slika" type="text">
+                <input id="lang" placeholder="Duzina" name="duzina" type="text">
+                <input id="lat" placeholder="Sirina" name="sirina" type="text">
                 <button id="btnDodaj">Add location</button>
             </form>
         </div>
