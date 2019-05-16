@@ -15,16 +15,16 @@
 </head>
 
 <body>
-        <ul id="myHeader">
-                <li class="first"><a href="index.html"><i class="fas fa-home"></i></a></li>
-                <li><a id="myList2" href="map.html">Map</a></li>
-                <li><a id="myList3" href="pictures.html">Pictures</a></li>
-                <li><a id="myList4" href="interesting.html">Interesting</a></li>
-                <li><a id="myList5" href="about.html">About</a></li>
-            </ul>
+        <div id="myHeader" class="p-1">
+                <li class="offset-3"><a href="index.html"><i class="fas fa-home"></i></a></li>
+                <li><a href="map.html">Map</a></li>
+                <li><a href="pictures.html">Pictures</a></li>
+                <li><a href="interesting.html">Interesting</a></li>
+                <li><a href="about.html">About</a></li>
+            </div>
     <div class="container">
 
-        <h1 class="text-center">Interesting</h1>
+        <h1 class="text-center p-3">Interesting</h1>
         <hr>
         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate molestias tenetur velit nobis suscipit
             temporibus sit numquam itaque,
@@ -71,9 +71,16 @@
             </div>
         </div>
     </div>
-    <script src="main.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&callback=initMap"
-        async defer></script>
+    <footer id="myFooter" class="page-footer fixed-bottom">
+            <div class="footer-copyright text-center p-2"> © 2019 Copyright:
+                <a href="https://skolakoda.org/" target="_blank" class="text-warning"> {ŠKOLA KODA}</a>
+                <a href="https://github.com/ivangochanin/map-app" target="_blank" class="git-ic m-3 text-white" role="button"><i class="fab fa-lg fa-github"></i></a>
+                <a href="https://skolakoda.slack.com" target="_blank" class="slack-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-slack-hash"></i></a>
+                <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank" class="yt-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-youtube"></i></a>
+            </div>
+        </div>
+        </footer>
+  
 </body>
 
 </html>
