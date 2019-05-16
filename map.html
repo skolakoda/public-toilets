@@ -15,34 +15,43 @@
 </head>
 
 <body>
-        <ul id="myHeader">
-                <li class="first"><a href="index.html"><i class="fas fa-home"></i></a></li>
-                <li><a id="myList2" href="map.html">Map</a></li>
-                <li><a id="myList3" href="pictures.html">Pictures</a></li>
-                <li><a id="myList4" href="interesting.html">Interesting</a></li>
-                <li><a id="myList5" href="about.html">About</a></li>
-            </ul>                     
-    <div class="row">
-        <div id="left" class="col-5">
-            <h1 class="text-center mt-5">Map Content</h1>
-            <button id="my_location">My Location <img src="https://img.icons8.com/metro/26/000000/define-location.png"></button>            
+    <div id="myHeader" class="p-1">
+        <li class="offset-3"><a href="index.html"><i class="fas fa-home"></i></a></li>
+        <li><a href="map.html">Map</a></li>
+        <li><a href="pictures.html">Pictures</a></li>
+        <li><a href="interesting.html">Interesting</a></li>
+        <li><a href="about.html">About</a></li>
+    </div>
+
+    <div class="wrapper">
+        <div id="map"></div>
+        <div class="content">
+            <h4>Content</h4>
+            <button id="my_location" class="btn btn-danger">My Location <img
+                    src="https://img.icons8.com/metro/26/000000/define-location.png"></button>
             <form id="myForm" method="POST" action="http://localhost:3000/dodaj-lokaciju" style="width: 170px">
-                <input placeholder="Naziv lokacije" name="naziv" required></input>
-                <input placeholder="Opis lokacije" name="opis"></input>
-                <input placeholder="Slika lokacije" name="slika" type="text">
-                <button id="btnDodaj">Add location</button>
+                <input class="form-control m-1" placeholder="Naziv lokacije" name="naziv"></input>
+                <input class="form-control m-1" placeholder="Opis lokacije" name="opis"></input>
+                <input class="form-control m-1" placeholder="Slika lokacije" name="slika" type="text">
+                <button id="btnDodaj" class="btn btn-primary">Add location</button>
             </form>
-        </div>
-        <div id="right" class="col-7">
-            <div id="map">
-                Mape
-            </div>
+
         </div>
     </div>
+    <footer id="myFooter" class="page-footer fixed-bottom">
+        <div class="footer-copyright text-center p-2"> © 2019 Copyright:
+            <a href="https://skolakoda.org/" target="_blank" class="text-warning"> {ŠKOLA KODA}</a>
+            <a href="https://github.com/ivangochanin/map-app" target="_blank" class="git-ic m-3 text-white" role="button"><i class="fab fa-lg fa-github"></i></a>
+            <a href="https://skolakoda.slack.com" target="_blank" class="slack-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-slack-hash"></i></a>
+            <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank" class="yt-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-youtube"></i></a>
+        </div>
+    </div>
+    </footer>
+
     <script src="main.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&callback=initMap"
         async defer></script>
-    <script type="text/javascript" src="add_location.js"></script>    
+    <!-- <script type="text/javascript" src="add_location.js"></script>  -->
 </body>
 
 </html>
