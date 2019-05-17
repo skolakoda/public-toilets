@@ -13,9 +13,13 @@ Bootstrap 4
 
 ## Code style
 
-Airbnb Style Guide
+Airbnb Style Guide (see [tutorial](https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a))
 
-Tutorial: https://blog.echobind.com/integrating-prettier-eslint-airbnb-style-guide-in-vscode-47f07b5d7d6a
+To install linter in project run:
+
+```
+npm install
+```
 
 ## License
 
