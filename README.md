@@ -21,6 +21,12 @@ To install linter in project run:
 npm install
 ```
 
+To start linter via command line:
+
+```
+npm run linter
+```
+
 ## License
 
 Škola koda, https://skolakoda.org/
