@@ -1,20 +1,13 @@
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
 }
-#myHeader {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-  background: linear-gradient(59deg, #3A6073, #16222A);
-  /* opacity: 0.8; */
-}
+
 .wrapper {
   position: relative;
-  height: 91%;
+  height: 96%;
 }
 
 #map {
@@ -26,48 +19,17 @@ html, body {
 
 .content {
   position: absolute;
-  width: 300px;
-  height: 600px;
+  width: 200px;
+  height: 200px;
   padding: 50px;
-  top: 100px;
-  left: 100px;
+  top: 70px;
+  left: 10px;
   color: white;
-  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-  background: linear-gradient(59deg, #3A6073, #16222A);
+  background: linear-gradient(to left, #3A6073, #16222A);
   opacity: 0.7;
 }
 
-li {
-    float: left;
-    padding-left: 100px;
-}
-
-li a {
-    display: block;
-    color:white;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-}
-
-li a:hover {
-    color: #4db5e6;
-    text-decoration: none;
-}
-
-/* .first{
-   margin-left: 370px;
-} */
-
 #myFooter {
- 
-  background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
-  background: linear-gradient(59deg, #3A6073, #16222A);
+  background: linear-gradient(to right, #3A6073, #16222A);
   color: white;
-  /* margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color:black;
-  color: white;
-  opacity: 0.8; */
 }

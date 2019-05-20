@@ -15,34 +15,34 @@
 </head>
 
 <body>
-        <div id="myHeader" class="p-1">
-                <li class="offset-3"><a href="index.html"><i class="fas fa-home"></i></a></li>
-                <li><a href="map.html">Map</a></li>
-                <li><a href="pictures.html">Pictures</a></li>
-                <li><a href="interesting.html">Interesting</a></li>
-                <li><a href="about.html">About</a></li>
-            </div>
 
-    <div class="container">
-
-        <h1 class="text-center p-3">Home</h1>
-        <hr>
-        <p>Zdravo :)</p>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias dolorum impedit obcaecati porro nostrum eaque
-            reprehenderit ipsam
-            ratione mollitia. Blanditiis culpa iure, sed odit magni deserunt quis at minima odio.
-            Nulla dolores cumque fugiat eum sequi architecto alias quidem dicta deleniti! Rerum.</p>
+    <div class="wrapper">
+        <div id="map"></div>
+        <div class="content">
+            <h4>Content</h4>
+            <button id="my_location" class="btn btn-primary btn-danger"><img
+                    src="https://img.icons8.com/metro/26/000000/define-location.png">
+            </button>
+        </div>
     </div>
     <footer id="myFooter" class="page-footer fixed-bottom">
-            <div class="footer-copyright text-center p-2"> © 2019 Copyright:
-                <a href="https://skolakoda.org/" target="_blank" class="text-warning"> {ŠKOLA KODA}</a>
-                <a href="https://github.com/ivangochanin/map-app" target="_blank" class="git-ic m-3 text-white" role="button"><i class="fab fa-lg fa-github"></i></a>
-                <a href="https://skolakoda.slack.com" target="_blank" class="slack-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-slack-hash"></i></a>
-                <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank" class="yt-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-youtube"></i></a>
-            </div>
+        <div class="footer-copyright text-center p-2"> © 2019 Copyright:
+            <a href="https://skolakoda.org/" target="_blank" class="text-warning"> {ŠKOLA KODA}</a>
+            <a href="https://github.com/ivangochanin/map-app" target="_blank" class="git-ic m-3 text-white"
+                role="button"><i class="fab fa-lg fa-github"></i></a>
+            <a href="https://skolakoda.slack.com" target="_blank" class="slack-ic mr-3 text-white" role="button"><i
+                    class="fab fa-lg fa-slack-hash"></i></a>
+            <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank"
+                class="yt-ic mr-3 text-white" role="button"><i class="fab fa-lg fa-youtube"></i></a>
         </div>
-        </footer>
+        </div>
+    </footer>
 
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&callback=initMap"
+        async defer></script>
+    <script src="main.js"></script>
+    <!-- <script type="text/javascript" src="add_location.js"></script>  -->
 </body>
 
 </html>
