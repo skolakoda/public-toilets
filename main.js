@@ -1,6 +1,5 @@
 /* global google */
 let map;
-// eslint-disable-next-line no-unused-vars
 let marker;
 // eslint-disable-next-line no-unused-vars
 function initMap() {
@@ -19,39 +18,70 @@ function initMap() {
     info: {
       icon: `${iconBase2}icon44.png`
     },
-    restaurants: {
+    klub: {
       icon: `${iconBase1}icon32.png`
     },
-    radiation: {
+    restoran: {
       icon: `${iconBase2}icon47.png`
     },
-    market: {
+    proba: {
       icon: `${iconBase2}icon26.png`
     }
   };
 
   function createMarkers(places) {
     // Create markers
-    places.forEach(i => {
-      marker = new google.maps.Marker({
-        position: i.position,
-        icon: icons[i.type].icon,
-        map
-      });
+    marker = new google.maps.Marker({
+      position: places.position,
+      icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
+      map
+    });
+    return marker;
+  }
+
+  function displayInfowindow(markers, infowindow) {
+    markers.addListener('click', () => {
+      infowindow.open(map, markers);
     });
   }
-  function displayLocations(spomenici) {
-    const places = [];
-    spomenici.forEach(spomenik => {
-      const { lat } = spomenik.lokacija;
-      const { lon } = spomenik.lokacija;
-      const newLocation = {
-        position: new google.maps.LatLng(lat, lon),
-        type: 'radiation'
-      };
-      places.push(newLocation);
+
+  function createInfowindow(content) {
+    const infowindow = new google.maps.InfoWindow({
+      content
     });
-    createMarkers(places);
+    return infowindow;
+  }
+
+  function displayLocations(spomenici) {
+    spomenici.forEach(spomenik => {
+      const naslov = spomenik.naslov ? spomenik.naslov : null;
+      const opis = spomenik.opis ? spomenik.opis : null;
+      const type = spomenik.kategorija ? spomenik.kategorija : null;
+      let lat;
+      let lon;
+      let newLocation;
+      let markerMaker;
+      let infowindowContent;
+      let infowindowMaker;
+      if (spomenik.lokacija) {
+        lat = spomenik.lokacija.lat ? spomenik.lokacija.lat : null;
+        lon = spomenik.lokacija.lon ? spomenik.lokacija.lon : null;
+        if (lat && lon) {
+          newLocation = {
+            position: new google.maps.LatLng(lat, lon),
+            type
+          };
+          markerMaker = createMarkers(newLocation);
+        }
+      }
+      if (naslov && opis) {
+        infowindowContent = `<div><header><h3>${naslov}</h3></header><article><p>${opis}</p></article></div>`;
+        infowindowMaker = createInfowindow(infowindowContent);
+      }
+      if (markerMaker && infowindowMaker) {
+        displayInfowindow(markerMaker, infowindowMaker);
+      }
+    });
   }
 
   fetch('https://spomenici-api.herokuapp.com/spomenici')
@@ -68,7 +98,6 @@ function initMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
-
         map.setCenter(pos);
 
         marker = new google.maps.Marker({
