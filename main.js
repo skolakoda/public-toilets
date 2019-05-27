@@ -1,7 +1,7 @@
 /* global google */
 let map;
 let marker;
-// eslint-disable-next-line no-unused-vars
+
 function initMap() {
   map = new google.maps.Map(document.querySelector('#map'), {
     center: new google.maps.LatLng(44.817197, 20.437273),
@@ -108,3 +108,5 @@ function initMap() {
     }
   };
 }
+
+window.onload = initMap;
