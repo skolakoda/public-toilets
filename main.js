@@ -1,6 +1,5 @@
 /* global google */
 let map;
-let marker;
 
 function initMap() {
   map = new google.maps.Map(document.querySelector('#map'), {
@@ -31,7 +30,7 @@ function initMap() {
 
   function createMarkers(places) {
     // Create markers
-    marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: places.position,
       icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
       map
@@ -100,7 +99,8 @@ function initMap() {
         };
         map.setCenter(pos);
 
-        marker = new google.maps.Marker({
+        // eslint-disable-next-line no-new
+        new google.maps.Marker({
           position: pos,
           map
         });
