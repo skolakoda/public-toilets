@@ -1,7 +1,6 @@
 /* global google */
 let map;
-let marker;
-// eslint-disable-next-line no-unused-vars
+
 function initMap() {
   map = new google.maps.Map(document.querySelector('#map'), {
     center: new google.maps.LatLng(44.817197, 20.437273),
@@ -31,7 +30,7 @@ function initMap() {
 
   function createMarkers(places) {
     // Create markers
-    marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: places.position,
       icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
       map
@@ -100,7 +99,8 @@ function initMap() {
         };
         map.setCenter(pos);
 
-        marker = new google.maps.Marker({
+        // eslint-disable-next-line no-new
+        new google.maps.Marker({
           position: pos,
           map
         });
@@ -108,3 +108,5 @@ function initMap() {
     }
   };
 }
+
+window.onload = initMap;
