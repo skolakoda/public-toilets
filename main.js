@@ -1,15 +1,32 @@
+/* eslint-disable import/extensions */
 /* global google */
+import icons from './helpers/icons.js';
+import createInfowindow from './helpers/infowindow.js';
+
 let map;
-import { iconBase1, iconBase2, icons } from './icons.js';
 
 function initMap() {
   map = new google.maps.Map(document.querySelector('#map'), {
-    center: new google.maps.LatLng(44.817197, 20.437273),
-    zoom: 12
+    center: new google.maps.LatLng(44.8086419, 20.4882411),
+    zoom: 17,
+    mapTypeControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      position: google.maps.ControlPosition.TOP_CENTER
+    },
+    zoomControl: true,
+    zoomControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    scaleControl: true,
+    streetViewControl: true,
+    streetViewControlOptions: {
+      position: google.maps.ControlPosition.RIGHT_TOP
+    },
+    fullscreenControl: true
   });
 
   function createMarkers(places) {
-    // Create markers
     const marker = new google.maps.Marker({
       position: places.position,
       icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
@@ -23,19 +40,12 @@ function initMap() {
       infowindow.open(map, markers);
     });
   }
-
-  function createInfowindow(content) {
-    const infowindow = new google.maps.InfoWindow({
-      content
-    });
-    return infowindow;
-  }
-
   function displayLocations(spomenici) {
     spomenici.forEach(spomenik => {
       const naslov = spomenik.naslov ? spomenik.naslov : null;
       const opis = spomenik.opis ? spomenik.opis : null;
       const type = spomenik.kategorija ? spomenik.kategorija : null;
+
       let lat;
       let lon;
       let newLocation;
@@ -78,6 +88,7 @@ function initMap() {
           lng: position.coords.longitude
         };
         map.setCenter(pos);
+        map.setZoom(18);
 
         // eslint-disable-next-line no-new
         new google.maps.Marker({
@@ -88,5 +99,4 @@ function initMap() {
     }
   };
 }
-
 window.onload = initMap;
