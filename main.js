@@ -2,6 +2,8 @@
 /* global google */
 import icons from './helpers/icons.js';
 import createInfowindow from './helpers/infowindow.js';
+import addLocation from './helpers/addLocation.js';
+import { latObj, lonObj } from './helpers/globals.js';
 
 let map;
 
@@ -73,7 +75,7 @@ function initMap() {
     });
   }
 
-  fetch('https://spomenici-api.herokuapp.com/spomenici')
+  fetch('https://spomenici-api.herokuapp.com/novogroblje')
     .then(response => response.json())
     .then(data => {
       displayLocations(data);
@@ -89,6 +91,8 @@ function initMap() {
         };
         map.setCenter(pos);
         map.setZoom(18);
+        latObj.value = pos.lat;
+        lonObj.value = pos.lng;        
 
         // eslint-disable-next-line no-new
         new google.maps.Marker({
@@ -100,3 +104,5 @@ function initMap() {
   };
 }
 window.onload = initMap;
+
+document.getElementById("myForm").addEventListener("submit", addLocation);

@@ -57,8 +57,15 @@
                     <a href="#addLocations" class="drop"><i class="fas fa-plus-circle"></i> Add Location</a>
                     <secion class="dropOpen">
                         <div class="addContent addLocation">
-
-                            <p>Developer: Add Your Content Here</p>
+                            <form id="myForm" method="POST" action=" https://spomenici-api.herokuapp.com/novogroblje/dodaj">
+                                <input id="naslov" placeholder="Title" name="naslov" type="text" required>
+                                <input id="opis" placeholder="Description" name="opis" type="text" required>
+                                <input id="kategorija" placeholder="Category" name="kategorija" type="text" required>
+                                <input id="slika" placeholder="Picture" name="slika" type="file">
+                                <input id="lat" placeholder="Latitude" name="lat" type="text" required>
+                                <input id="lon" placeholder="Longitude" name="lon" type="text" required>
+                                <button id="btnAdd">Add location</button>
+                            </form>                            
 
                             <p class="pleaseLogin">User: Please Login to add location</p>
                         </div>
