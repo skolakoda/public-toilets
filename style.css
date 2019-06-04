@@ -19,11 +19,12 @@ body {
 
 .material-icons.md-36 {
   font-size: 36px;
+  width: 35px;
 }
 
 .btnLocation {
   position: absolute;
-  left: .5%;
+  left: 0.5%;
   top: 1%;
   cursor: pointer;
   background: white;
@@ -46,7 +47,7 @@ body {
   position: absolute;
   width: 35px;
   padding: 3px 3px;
-  left: .5%;
+  left: 0.5%;
   top: 7.5%;
   width: 35px;
   height: 35px;
@@ -70,7 +71,7 @@ body {
   cursor: pointer;
 }
 
-.switch[type=checkbox] {
+.switch[type='checkbox'] {
   width: 12mm;
   height: 12mm;
 }
@@ -85,19 +86,19 @@ body {
   transition: 0.7s;
 }
 
-.switch:checked~.line1 {
+.switch:checked ~ .line1 {
   transform: rotate(-45deg) translate(-9px, 6px);
 }
 
-.switch:checked~.line2 {
+.switch:checked ~ .line2 {
   opacity: 0;
 }
 
-.switch:checked~.line3 {
+.switch:checked ~ .line3 {
   transform: rotate(45deg) translate(-8px, -8px);
 }
 
-.switch:checked~.hide {
+.switch:checked ~ .hide {
   display: block;
 }
 
@@ -111,10 +112,10 @@ body {
   width: 35vh;
   background: white;
   border-radius: 2px;
-  opacity: .91;
+  opacity: 0.91;
   display: none;
   transition: 4s;
-  animation: fade-in .7s;
+  animation: fade-in 0.7s;
 }
 
 @keyframes fade-in {
@@ -139,8 +140,7 @@ body {
 
 .menu li:target .dropOpen {
   display: block;
-  animation: drop-down .7s ease-out;
-
+  animation: drop-down 0.7s ease-out;
 }
 
 @keyframes drop-down {
@@ -163,9 +163,9 @@ body {
   text-decoration: none;
   display: block;
   margin: 5px;
-  padding: .1em .1em;
+  padding: 0.1em 0.1em;
   transition: color 1s;
-  transition: background-color .7s;
+  transition: background-color 0.7s;
   transition: padding-top 1s;
 }
 
@@ -176,10 +176,10 @@ body {
 .drop::before {
   content: '';
   display: block;
-  height: .9px;
+  height: 0.9px;
   background-image: linear-gradient(to right, #144766, rgb(250, 234, 234));
   position: absolute;
-  bottom: -.1em;
+  bottom: -0.1em;
   width: 65%;
   left: 1%;
   right: 0;
@@ -188,23 +188,21 @@ body {
 }
 
 .drop:hover::before {
-  transform: scale(1, .9);
+  transform: scale(1, 0.9);
 }
-
 
 .contentFooter {
   background: #dee7f8;
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: .95;
+  opacity: 0.95;
 }
 
 .footerList {
   list-style: none;
-  font-size: .75em;
+  font-size: 0.75em;
   padding-left: 3px;
-
 }
 
 .footerItem {
@@ -214,7 +212,7 @@ body {
 
 .footerItem a:hover {
   text-shadow: 0 0 5px white;
-  transition: .5s ease;
+  transition: 0.5s ease;
 }
 
 .skolaKoda,
@@ -251,7 +249,6 @@ body {
   font-weight: 700;
 }
 
-
 @media screen and (max-width: 1200px) {
   .site-nav {
     width: 25vh;
@@ -280,29 +277,35 @@ body {
   }
 
   .footerList {
-    font-size: .6em;
+    font-size: 0.6em;
     padding-left: 2px;
   }
 
   .footerItem {
-    padding-left: .5em;
+    padding-left: 0.5em;
   }
 }
 
-
 /* For added content - use proper class: myFilter/addLocation/editLocation/searchLocation */
 .addContent {
-  font-size: .8em;
+  font-size: 0.85em;
   font-weight: 200;
-  margin: 15%;
+  margin: 10%;
+  margin-left: 15%;
+  margin-top: 15%;
   color: #42da23;
 }
 
 .pleaseLogin {
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: 200;
   color: #fc0606;
 }
-#myForm > input{ 
-  width: 150px;
+
+.addLocation {
+  margin-left: 7%;
+}
+
+.myFilter > input {
+  padding-bottom: 8px;
 }

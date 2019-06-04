@@ -5,6 +5,7 @@ import createInfowindow from './helpers/infowindow.js';
 import addLocation from './helpers/addLocation.js';
 import { latObj, lonObj } from './helpers/globals.js';
 
+const allMarkers = [];
 let map;
 
 function initMap() {
@@ -32,8 +33,10 @@ function initMap() {
     const marker = new google.maps.Marker({
       position: places.position,
       icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
+      category: places.type,
       map
     });
+    allMarkers.push(marker);
     return marker;
   }
 
@@ -92,7 +95,7 @@ function initMap() {
         map.setCenter(pos);
         map.setZoom(18);
         latObj.value = pos.lat;
-        lonObj.value = pos.lng;        
+        lonObj.value = pos.lng;
 
         // eslint-disable-next-line no-new
         new google.maps.Marker({
@@ -105,4 +108,23 @@ function initMap() {
 }
 window.onload = initMap;
 
-document.getElementById("myForm").addEventListener("submit", addLocation);
+document.querySelector('#myForm').addEventListener('submit', addLocation);
+
+const checkedList = document.querySelectorAll('input[name=filter]');
+checkedList.forEach(item =>
+  item.addEventListener('change', () => {
+    if (item.checked) {
+      allMarkers.forEach(mark => {
+        if (mark.category === item.value) {
+          mark.setMap(map);
+        }
+      });
+    } else if (!item.checked) {
+      allMarkers.forEach(mark => {
+        if (mark.category === item.value) {
+          mark.setMap(null);
+        }
+      });
+    }
+  })
+);
