@@ -55,28 +55,27 @@ function initMap() {
       displayLocations(response.data);
     });
 
-  const myLocation = document.querySelector('#my_location');
-  myLocation.onclick = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        map.setCenter(pos);
-        map.setZoom(18);
-        latObj.value = pos.lat;
-        lonObj.value = pos.lng;
+  const myLocationIcon = document.querySelector('#my_location');
+  myLocationIcon.onclick = () => {
+    navigator.geolocation.getCurrentPosition(position => {
+      const pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      map.setCenter(pos);
+      map.setZoom(18);
+      latObj.value = pos.lat;
+      lonObj.value = pos.lng;
 
-        // eslint-disable-next-line no-new
-        new google.maps.Marker({
-          position: pos,
-          map
-        });
+      // eslint-disable-next-line no-new
+      new google.maps.Marker({
+        position: pos,
+        map
       });
-    }
+    });
   };
 }
+
 window.onload = initMap;
 
 document.getElementById('myForm').addEventListener('submit', addLocation);
