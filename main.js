@@ -75,10 +75,10 @@ function initMap() {
     });
   }
 
-  fetch('https://spomenici-api.herokuapp.com/novogroblje')
+  fetch('https://spomenici-api.herokuapp.com/kolekcija/novogroblje')
     .then(response => response.json())
-    .then(data => {
-      displayLocations(data);
+    .then(response => {
+      displayLocations(response.data);
     });
 
   const myLocation = document.querySelector('#my_location');
@@ -92,7 +92,7 @@ function initMap() {
         map.setCenter(pos);
         map.setZoom(18);
         latObj.value = pos.lat;
-        lonObj.value = pos.lng;        
+        lonObj.value = pos.lng;
 
         // eslint-disable-next-line no-new
         new google.maps.Marker({

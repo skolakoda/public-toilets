@@ -10,7 +10,7 @@ function addLocation(event) {
   const lat = latObj.value;
   const lon = lonObj.value;
 
-  fetch('https://spomenici-api.herokuapp.com/novogroblje/dodaj', {
+  fetch('https://spomenici-api.herokuapp.com/kolekcija/novogroblje/dodaj', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
