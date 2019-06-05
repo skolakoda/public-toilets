@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { latObj, lonObj } from './globals.js';
+import { latObj, lonObj } from './constants.js';
 
 function addLocation(event) {
   event.preventDefault();

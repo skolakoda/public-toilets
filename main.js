@@ -4,7 +4,7 @@ import icons from './helpers/icons.js';
 import mapConfig from './helpers/mapConfig.js';
 import createInfowindow from './helpers/infowindow.js';
 import addLocation from './helpers/addLocation.js';
-import { latObj, lonObj } from './helpers/globals.js';
+import { latObj, lonObj } from './helpers/constants.js';
 
 let map;
 
