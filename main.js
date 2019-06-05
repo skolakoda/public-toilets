@@ -1,6 +1,7 @@
 /* eslint-disable import/extensions */
 /* global google */
 import icons from './helpers/icons.js';
+import mapConfig from './helpers/mapConfig.js';
 import createInfowindow from './helpers/infowindow.js';
 import addLocation from './helpers/addLocation.js';
 import { latObj, lonObj } from './helpers/globals.js';
@@ -8,25 +9,7 @@ import { latObj, lonObj } from './helpers/globals.js';
 let map;
 
 function initMap() {
-  map = new google.maps.Map(document.querySelector('#map'), {
-    center: new google.maps.LatLng(44.8086419, 20.4882411),
-    zoom: 17,
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-      position: google.maps.ControlPosition.TOP_CENTER
-    },
-    zoomControl: true,
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
-    },
-    scaleControl: true,
-    streetViewControl: true,
-    streetViewControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
-    },
-    fullscreenControl: true
-  });
+  map = new google.maps.Map(document.querySelector('#map'), mapConfig);
 
   function createMarkers(places) {
     const marker = new google.maps.Marker({
@@ -105,4 +88,4 @@ function initMap() {
 }
 window.onload = initMap;
 
-document.getElementById("myForm").addEventListener("submit", addLocation);
+document.getElementById('myForm').addEventListener('submit', addLocation);

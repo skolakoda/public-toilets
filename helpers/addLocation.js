@@ -22,7 +22,7 @@ function addLocation(event) {
       lon
     })
   }).then(response => {
-    response.text();
+    response.json(); // ovo je suvisno ako se ne koristi odgovor
     window.location.reload();
   });
 }
