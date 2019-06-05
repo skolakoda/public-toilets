@@ -7,4 +7,4 @@ function createInfowindow(content) {
   return infowindow;
 }
 
-export { createInfowindow as default };
+export default createInfowindow;

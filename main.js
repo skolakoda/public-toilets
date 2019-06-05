@@ -11,7 +11,7 @@ let map;
 function initMap() {
   map = new google.maps.Map(document.querySelector('#map'), mapConfig);
 
-  function createMarkers(places) {
+  function createMarker(places) {
     const marker = new google.maps.Marker({
       position: places.position,
       icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
@@ -20,41 +20,32 @@ function initMap() {
     return marker;
   }
 
-  function displayInfowindow(markers, infowindow) {
-    markers.addListener('click', () => {
-      infowindow.open(map, markers);
+  function addInfowindow(marker, infowindow) {
+    marker.addListener('click', () => {
+      infowindow.open(map, marker);
     });
   }
+
   function displayLocations(spomenici) {
     spomenici.forEach(spomenik => {
-      const naslov = spomenik.naslov ? spomenik.naslov : null;
-      const opis = spomenik.opis ? spomenik.opis : null;
-      const type = spomenik.kategorija ? spomenik.kategorija : null;
-
-      let lat;
-      let lon;
-      let newLocation;
-      let markerMaker;
-      let infowindowContent;
-      let infowindowMaker;
-      if (spomenik.lokacija) {
-        lat = spomenik.lokacija.lat ? spomenik.lokacija.lat : null;
-        lon = spomenik.lokacija.lon ? spomenik.lokacija.lon : null;
-        if (lat && lon) {
-          newLocation = {
-            position: new google.maps.LatLng(lat, lon),
-            type
-          };
-          markerMaker = createMarkers(newLocation);
-        }
-      }
-      if (naslov && opis) {
-        infowindowContent = `<div><header><h3>${naslov}</h3></header><article><p>${opis}</p></article></div>`;
-        infowindowMaker = createInfowindow(infowindowContent);
-      }
-      if (markerMaker && infowindowMaker) {
-        displayInfowindow(markerMaker, infowindowMaker);
-      }
+      const { naslov, opis, kategorija } = spomenik;
+      const { lat, lon } = spomenik.lokacija;
+      const newLocation = {
+        position: new google.maps.LatLng(lat, lon),
+        type: kategorija
+      };
+      const marker = createMarker(newLocation);
+      const infowindowContent = `
+        <div>
+          <header>
+            <h3>${naslov}</h3>
+          </header>
+          <article>
+            <p>${opis || ''}</p>
+          </article>
+        </div>
+      `;
+      addInfowindow(marker, createInfowindow(infowindowContent));
     });
   }
 
