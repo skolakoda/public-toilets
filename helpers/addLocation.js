@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import { latObj, lonObj } from './globals.js';
+import { latObj, lonObj } from './constants.js';
 
 function addLocation(event) {
   event.preventDefault();
@@ -10,7 +10,7 @@ function addLocation(event) {
   const lat = latObj.value;
   const lon = lonObj.value;
 
-  fetch('https://spomenici-api.herokuapp.com/novogroblje/dodaj', {
+  fetch('https://spomenici-api.herokuapp.com/kolekcija/novogroblje/dodaj', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -22,7 +22,7 @@ function addLocation(event) {
       lon
     })
   }).then(response => {
-    response.text();
+    response.json(); // ovo je suvisno ako se ne koristi odgovor
     window.location.reload();
   });
 }
