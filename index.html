@@ -1,111 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <!--CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
     <!--fontawesome-->
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.5.0/css/all.css'>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
     <!--Google icons-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <!--font-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 
     <title>ŠKOLA KODA mp-app</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div class="wrapper">
-        <div id="map"></div>
+      <div id="map"></div>
     </div>
     <div>
-        <i id="my_location" class="material-icons md-36 btnLocation">my_location</i>
+      <i id="my_location" class="material-icons md-36 btnLocation" title="My location">my_location</i>
     </div>
 
     <div class="container">
-        <input type="checkbox" class="switch" />
+      <input type="checkbox" class="switch" />
 
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
+      <div class="line1"></div>
+      <div class="line2"></div>
+      <div class="line3"></div>
 
+      <div class="site-nav hide">
+        <ul class="menu">
+          <li class="item" id="filterLocations">
+            <a href="#filterLocations" class="drop"><i class="fas fa-filter"></i> Filter Locations</a>
+            <section class="dropOpen">
+              <div class="addContent myFilter">
+                <form>
+                  <input type="checkbox" name="filter" value="Glumac" checked />Glumac<br />
+                  <input type="checkbox" name="filter" value="Grad" checked />Grad<br />
+                  <input type="checkbox" name="filter" value="Most" checked />Most<br />
+                  <input type="checkbox" name="filter" value="Park" checked />Park<br />
+                  <input type="checkbox" name="filter" value="Novi Beograd" checked />Novi Beograd<br />
+                  <input type="checkbox" name="filter" value="Trzni centar" checked />Trzni centar<br />
+                </form>
+              </div>
+            </section>
+          </li>
 
-        <div class="site-nav hide">
-            <ul class="menu">
-                <li class="item" id='filterLocations'>
-                    <a href="#filterLocations" class="drop"><i class="fas fa-filter"></i> Filter Locations</a>
-                    <secion class="dropOpen">
-                        <div class="addContent myFilter">
-                            <p>Developer: Add Your Content Here</p>
-                        </div>
-                    </secion>
-                </li>
+          <li class="item" id="searchLocations">
+            <a href="#searchLocations" class="drop"><i class="fas fa-search-location"></i> Search Location</a>
+            <section class="dropOpen">
+              <div class="addContent searchLocation">
+                <input id="searchInp" type="text" placeholder="Search by name..." />
+                <button id="searchBtn">Search</button>
+              </div>
+              <ul id="resultList"></ul>
+            </section>
+          </li>
+          <li class="item" id="addLocations">
+            <a href="#addLocations" class="drop"><i class="fas fa-plus-circle"></i> Add Location</a>
+            <section class="dropOpen">
+              <div class="addContent addLocation">
+                <form id="myForm" method="POST" action=" https://spomenici-api.herokuapp.com/novogroblje/dodaj">
+                  <input id="naslov" placeholder="Title" name="naslov" type="text" required />
+                  <input id="opis" placeholder="Description" name="opis" type="text" required />
+                  <input id="kategorija" placeholder="Category" name="kategorija" type="text" required />
+                  <input id="slika" placeholder="Picture" name="slika" type="file" />
+                  <input id="lat" placeholder="Latitude" name="lat" type="text" required />
+                  <input id="lon" placeholder="Longitude" name="lon" type="text" required />
+                  <button id="btnAdd">Add location</button>
+                </form>
 
-                <li class="item" id='searchLocations'>
-                    <a href="#searchLocations" class="drop"><i class="fas fa-search-location"></i> Search Location</a>
-                    <secion class="dropOpen">
-                        <div class="addContent searchLocation">
-                            <p>Developer: Add Your Content Here</p>
-                        </div>
-                    </secion>
-                </li>
-                <li class="item" id='addLocations'>
-                    <a href="#addLocations" class="drop"><i class="fas fa-plus-circle"></i> Add Location</a>
-                    <secion class="dropOpen">
-                        <div class="addContent addLocation">
-                            <form id="myForm" method="POST" action=" https://spomenici-api.herokuapp.com/novogroblje/dodaj">
-                                <input id="naslov" placeholder="Title" name="naslov" type="text" required>
-                                <input id="opis" placeholder="Description" name="opis" type="text" required>
-                                <input id="kategorija" placeholder="Category" name="kategorija" type="text" required>
-                                <input id="slika" placeholder="Picture" name="slika" type="file">
-                                <input id="lat" placeholder="Latitude" name="lat" type="text" required>
-                                <input id="lon" placeholder="Longitude" name="lon" type="text" required>
-                                <button id="btnAdd">Add location</button>
-                            </form>
-
-                            <p class="pleaseLogin">User: Please Login to add location</p>
-                        </div>
-                    </secion>
-                </li>
-                <li class="item" id='editLocations'>
-                    <a href="#editLocations" class="drop"><i class="fas fa-user-edit"></i> Edit Location</a>
-                    <secion class="dropOpen">
-                        <div class="addContent editLocation">
-                            <p>Developer: Add Your Content Here</p>
-                            <p class="pleaseLogin">Please Login to edit location</p>
-                        </div>
-                    </secion>
-                </li>
-
-            </ul>
-            <div class="contentFooter">
-                <ul class="footerList">
-                    <li class="footerItem">© Copyright:<a class="skolaKoda" href="https://skolakoda.org/"
-                            target="_blank">
-                            {ŠKOLA KODA}</a></li>
-                    <li class="footerItem"><a href="https://github.com/ivangochanin/map-app" target="_blank"
-                            role="button"><i class="fab fa-lg fa-github"></i></a></li>
-                    <li class="footerItem"><a href="https://www.facebook.com/skolakoda/" target="_blank" role="button">
-                            <i class="fab fa-lg fa-facebook-f"></i></i></a></li>
-                    <li class="footerItem"><a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos"
-                            target="_blank"><i class="fab fa-lg fa-youtube"></i></a></li>
-                </ul>
-            </div>
+                <p class="pleaseLogin">User: Please Login to add location</p>
+              </div>
+            </section>
+          </li>
+          <li class="item" id="editLocations">
+            <a href="#editLocations" class="drop"><i class="fas fa-user-edit"></i> Edit Location</a>
+            <section class="dropOpen">
+              <div class="addContent editLocation">
+                <p>Developer: Add Your Content Here</p>
+                <p class="pleaseLogin">Please Login to edit location</p>
+              </div>
+            </section>
+          </li>
+        </ul>
+        <div class="contentFooter">
+          <ul class="footerList">
+            <li class="footerItem">
+              © Copyright:<a class="skolaKoda" href="https://skolakoda.org/" target="_blank"> {ŠKOLA KODA}</a>
+            </li>
+            <li class="footerItem">
+              <a href="https://github.com/ivangochanin/map-app" target="_blank" role="button"
+                ><i class="fab fa-lg fa-github"></i
+              ></a>
+            </li>
+            <li class="footerItem">
+              <a href="https://www.facebook.com/skolakoda/" target="_blank" role="button">
+                <i class="fab fa-lg fa-facebook-f"></i
+              ></a>
+            </li>
+            <li class="footerItem">
+              <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank"
+                ><i class="fab fa-lg fa-youtube"></i
+              ></a>
+            </li>
+          </ul>
         </div>
+      </div>
     </div>
 
-
-
-
     <script
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&&language=en&region=EN"
-        defer></script>
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&&language=en&region=EN"
+      defer
+    ></script>
     <script defer src="./main.js" type="module"></script>
-
-</body>
-
+  </body>
 </html>
