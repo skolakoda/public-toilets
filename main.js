@@ -5,8 +5,14 @@ import mapConfig from './helpers/mapConfig.js';
 import createInfowindow from './helpers/infowindow.js';
 import addLocation from './helpers/addLocation.js';
 import { latObj, lonObj } from './helpers/constants.js';
+import { search, showChosenLocation } from './helpers/search.js';
 
 let map;
+const allMarkers = [];
+const checkedList = document.querySelectorAll('input[name=filter]');
+const searchBtn = document.querySelector('#searchBtn');
+const searchInp = document.querySelector('#searchInp');
+const myForm = document.getElementById('myForm');
 
 function initMap() {
   map = new google.maps.Map(document.querySelector('#map'), mapConfig);
@@ -15,8 +21,10 @@ function initMap() {
     const marker = new google.maps.Marker({
       position: places.position,
       icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
+      category: places.type,
       map
     });
+    allMarkers.push(marker);
     return marker;
   }
 
@@ -76,6 +84,20 @@ function initMap() {
   };
 }
 
-window.onload = initMap;
+initMap();
 
-document.getElementById('myForm').addEventListener('submit', addLocation);
+const toggleMarkers = cbox => {
+  allMarkers.forEach(mark => {
+    if (mark.category === cbox.value) {
+      mark.setMap(cbox.checked ? map : null);
+    }
+  });
+};
+
+myForm.addEventListener('submit', addLocation);
+
+checkedList.forEach(cbox => cbox.addEventListener('change', () => toggleMarkers(cbox)));
+
+searchInp.addEventListener('keyup', search);
+
+searchBtn.addEventListener('click', () => showChosenLocation(map));
