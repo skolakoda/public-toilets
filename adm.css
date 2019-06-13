@@ -4,7 +4,8 @@
     box-sizing: border-box;
 }
 p{
-    font-size: 1.5em;
+    /* font-size: 1.5em; */
+    font-size: 24px;
     text-align: center;
     padding: 5px 0px 5px 0px;
     color: orange;
@@ -31,16 +32,17 @@ td{
     width: 16.6%;    
 }
 th{
-    background-color: #3A6073;
+    background-color: #3A6073;    
     /* width: 17%; */
-    color: white;
+    color: white;    
     height: 35px;
-    font-size: 0.7em;
+    font-size: 0.8em;
     width: 16.6%;
 }
 input{
     color: white;
     width: 100%;
+    height: 17px;            
 }
 .btnSave{
     margin: 0;
@@ -48,11 +50,24 @@ input{
     width: 100%;
     height: 35px;
     color: lightgreen;
+    background-color: #1f2e2e;
+    border: 1px solid grey;
 }
 .btnDelete{
     margin: 0;
     padding: 0;
     width: 100%;
     height: 35px;
-    color: lightcoral;    
+    color: lightcoral;   
+    background-color: #1f2e2e; 
+    border: 1px solid grey;
+}
+.styleInput{
+    margin: 0;
+    padding: 0px 0px 0px 5px;
+    color: white;
+    background-color: #16222A;
+    width: 100%;
+    height:35px;
+    border: none;
 }
