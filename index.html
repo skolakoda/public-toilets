@@ -1,121 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <!--CSS -->
-    <link rel="stylesheet" href="style.css" />
-    <!--fontawesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
-    <!--Google icons-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <!--font-->
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 
-    <title>ŠKOLA KODA mp-app</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!--CSS -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!--fontawesome-->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" />
+  <!--Google icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!--font-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 
-  <body>
-    <div class="wrapper">
-      <div id="map"></div>
+  <title>ŠKOLA KODA mp-app</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div id="map"></div>
+  </div>
+ 
+  <div class="container">
+
+
+    <div id="menu" class="switch">
+      <div id="line1" class="line1"></div>
+      <div id="line2" class="line2"></div>
+      <div id="line3" class="line3"></div>
     </div>
-    <div>
-      <i id="my_location" class="material-icons md-36 btnLocation" title="My location">my_location</i>
-    </div>
 
-    <div class="container">
-      <input type="checkbox" class="switch" />
-
-      <div class="line1"></div>
-      <div class="line2"></div>
-      <div class="line3"></div>
-
-      <div class="site-nav hide">
-        <ul class="menu">
-          <li class="item" id="filterLocations">
-            <a href="#filterLocations" class="drop"><i class="fas fa-filter"></i> Filter Locations</a>
-            <section class="dropOpen">
-              <div class="addContent myFilter">
-                <form>
-                  <input type="checkbox" name="filter" value="Glumac" checked />Glumac<br />
-                  <input type="checkbox" name="filter" value="Grad" checked />Grad<br />
-                  <input type="checkbox" name="filter" value="Most" checked />Most<br />
-                  <input type="checkbox" name="filter" value="Park" checked />Park<br />
-                  <input type="checkbox" name="filter" value="Novi Beograd" checked />Novi Beograd<br />
-                  <input type="checkbox" name="filter" value="Trzni centar" checked />Trzni centar<br />
-                </form>
-              </div>
-            </section>
-          </li>
-
-          <li class="item" id="searchLocations">
-            <a href="#searchLocations" class="drop"><i class="fas fa-search-location"></i> Search Location</a>
-            <section class="dropOpen">
-              <div class="addContent searchLocation">
-                <input id="searchInp" type="text" placeholder="Search by name..." />
-                <button id="searchBtn">Search</button>
-              </div>
-              <ul id="resultList"></ul>
-            </section>
-          </li>
-          <li class="item" id="addLocations">
-            <a href="#addLocations" class="drop"><i class="fas fa-plus-circle"></i> Add Location</a>
-            <section class="dropOpen">
-              <div class="addContent addLocation">
-                <form id="myForm" method="POST" action=" https://spomenici-api.herokuapp.com/novogroblje/dodaj">
-                  <input id="naslov" placeholder="Title" name="naslov" type="text" required />
-                  <input id="opis" placeholder="Description" name="opis" type="text" required />
-                  <input id="kategorija" placeholder="Category" name="kategorija" type="text" required />
-                  <input id="slika" placeholder="Picture" name="slika" type="file" />
-                  <input id="lat" placeholder="Latitude" name="lat" type="text" required />
-                  <input id="lon" placeholder="Longitude" name="lon" type="text" required />
-                  <button id="btnAdd">Add location</button>
-                </form>
-
-                <p class="pleaseLogin">User: Please Login to add location</p>
-              </div>
-            </section>
-          </li>
-          <li class="item" id="editLocations">
-            <a href="#editLocations" class="drop"><i class="fas fa-user-edit"></i> Edit Location</a>
-            <section class="dropOpen">
-              <div class="addContent editLocation">
-                <p>Developer: Add Your Content Here</p>
-                <p class="pleaseLogin">Please Login to edit location</p>
-              </div>
-            </section>
-          </li>
-        </ul>
-        <div class="contentFooter">
-          <ul class="footerList">
-            <li class="footerItem">
-              © Copyright:<a class="skolaKoda" href="https://skolakoda.org/" target="_blank"> {ŠKOLA KODA}</a>
-            </li>
-            <li class="footerItem">
-              <a href="https://github.com/ivangochanin/map-app" target="_blank" role="button"
-                ><i class="fab fa-lg fa-github"></i
-              ></a>
-            </li>
-            <li class="footerItem">
-              <a href="https://www.facebook.com/skolakoda/" target="_blank" role="button">
-                <i class="fab fa-lg fa-facebook-f"></i
-              ></a>
-            </li>
-            <li class="footerItem">
-              <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank"
-                ><i class="fab fa-lg fa-youtube"></i
-              ></a>
-            </li>
-          </ul>
+    <ul id="mainSite" class="collapsible expandable blue-grey darken-4 hidden">
+      <li>
+        <div id="progressLog" class="preloader-wrapper small active">
+          <!--add toggle hide class when need-->
+          <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="gap-patch">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
         </div>
-      </div>
+      </li>
+      <li>
+        <i id="sign" class="material-icons md-36 red-text">perm_identity</i>
+        <img src="img/blueMain/tioletBlur.png" alt="">
+        <img id="publicToilet" src="img/blueMain/publicToilet.png" alt="">
+      </li>
+
+
+      <li>
+        <div class="collapsible-header blue-grey darken-3 valign-wrapper"><i class="fas fa-filter"></i>
+          <h6>Filter Toilets</h6>
+        </div>
+        <div class="collapsible-body bg-image">
+          <form autocomplete="off">
+              <p>
+                  <label>
+                    <input type="checkbox" checked="checked" />
+                    <span class="black-text"> Cost</span> <i class="fas fa-euro-sign fa-2x"></i>
+                  </label>
+                </p>
+
+            <p>
+              <label>
+                <input type="checkbox" checked="checked" />
+                <span class="black-text"> Free </span> <i class="fab fa-creative-commons-nc-eu fa-2x"></i>
+              </label>
+            </p>
+
+            <p>
+              <label>
+                <input type="checkbox" checked="checked" />
+                <span class="black-text"> Moll </span> <i class="fas fa-shopping-cart fa-2x"></i>
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" checked="checked" />
+                <span class="black-text"> Toilet seat </span><img src="img/icons/05.png" alt="">
+              </label>
+            </p>
+            <p>
+              <label>
+                <input type="checkbox" checked="checked" />
+                <span class="black-text"> 0=24h </span> <i class="fas fa-door-open fa-2x"></i>
+              </label>
+            </p>
+          </form>
+
+        </div>
+      </li>
+
+
+      <li>
+        <div class="collapsible-header blue-grey darken-3 valign-wrapper"><i class="fas fa-poo-storm"></i>
+          Find the closest Toilet</div>
+        <div class="collapsible-body">
+          <a href="#" class="btn-floating pulse red lighten-1"></a>
+          Emergency download!
+
+        </div>
+
+      </li>
+      <li>
+        <div class="collapsible-header blue-grey darken-3 valign-wrapper"><i class="fas fa-plus-circle"></i>
+          Add Public Toilet</div>
+        <div id="hideMe" class="collapsible-body">
+            <a id="my_location" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">my_location</i></a>
+
+          <form id="myForm" method="POST" action=" https://spomenici-api.herokuapp.com/novogroblje/dodaj"
+            autocomplete="off">        
+
+            <div class="input-field">
+              <input id="naslov" name="naslov" type="text" required />
+              <label for="naslov">Naslov</label>
+            </div>
+
+            <div class="input-field">
+              <input id="opis" name="opis" type="text" required />
+              <label for="opis">Opis - dropdown</label>
+            </div>
+            <div class="input-field">
+              <input id="kategorija" name="kategorija" type="text" required />
+              <label for="kategorija">Kategorija - dropdown</label>
+            </div>
+            <div class="input-field">
+              <input id="lat" name="lat" type="text" required />
+              <label for="lat">Lat</label>
+            </div>
+            <div class="input-field">
+              <input id="lon" name="lon" type="text" required />
+              <label for="lon">Lon</label>
+            </div>
+            <div class="input-field">
+              <input id="slika" name="slika" type="file" />
+            </div>
+            <div class="right">Rate Toilet
+              <span class="valign-wrapper">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </span>
+            </div>
+            <button id="btnAdd" class="btns">Add location</button>
+
+          </form>
+        </div>
+      </li>
+      <li>
+        <div class="collapsible-header blue-grey darken-3 valign-wrapper"><i class="fas fa-edit"></i>Edit Added Toilets
+        </div>
+        <div class="collapsible-body">
+
+          <div class="input-field">
+            <input id="editNaslov" type="text" />
+            <label for="editNaslov">Naslov</label>
+          </div>
+
+          <div class="input-field">
+            <input id="editOpis" type="text" />
+            <label for="editOpis">Opis</label>
+          </div>
+          <div class="input-field">
+            <input id="editKategorija" type="text" />
+            <label for="editKategorija">Kategorija</label>
+          </div>
+          <div class="input-field">
+            <input id="slika1" name="slika" type="file" />
+          </div>
+          <div class="right">Rate Toilet
+            <span class="valign-wrapper">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+              <span class="fa fa-star"></span>
+            </span>
+          </div>
+          <button id="btnEdit" class="btns">Edit location</button>
+        </div>
+
+      </li>
+      <li>
+        <div class="page-footer blue-grey darken-4">
+
+          <div id="myFooter" class="container">
+            © 2019 Copyright:
+
+            <a href="https://github.com/ivangochanin/map-app" target="_blank" role="button"><i
+                class="fab fa-lg fa-github white-text"></i></a>
+            <a href="https://www.facebook.com/skolakoda/" target="_blank" role="button">
+              <i class="fab fa-lg fa-facebook-f light-blue-text"></i></a>
+            <a href="https://www.youtube.com/channel/UCxtuC8KZxqkh4WhNgiH_JTg/videos" target="_blank"><i
+                class="fab fa-lg fa-youtube red-text"></i></a>
+            <!-- <a class="grey-text" href="https://skolakoda.org/" target="_blank">{ŠKOLA KODA}</a> -->
+          </div>
+
+        </div>
+      </li>
+
+    </ul>
+    <div id="hideSignUp" class="hideSignUp ">
+
+      <form id="signUpForm" class="zoom">
+        <p class="signTitle">SIGN UP</p>
+        <p id="signedUp"></p>
+        <div id="progressSign" class="progress">
+          <div class="indeterminate"></div>
+        </div>
+        <div class="input-field">
+          <i class="material-icons prefix black-text">email</i>
+          <input id="emailSU" type="email" spellcheck="false" value="" required>
+          <label for="emailSU">Email</label>
+          <span id="wrongEmail"></span>
+        </div>
+
+        <div class="input-field">
+          <i class="material-icons prefix black-text">https</i>
+          <input id="passwordSU" type="password" spellcheck="false" value="" required>
+          <label for="passwordSU">Password</label>
+          <span id="wrongPassword"></span>
+        </div>
+
+
+        <div class="input-field">
+          <i class="material-icons prefix black-text">https</i>
+          <input id="repeatPassword" type="password" spellcheck="false" value="" required>
+          <label for="repeatPassword">Repeat Password</label>
+          <span id="wrongRepeatPassword"></span>
+        </div>
+
+        <button id="signUpButton" type="submit">SIGN UP</button>
+        <p> Already have an account? <a id="goToSingnIn" class="goTo">Log in</a></p>
+      </form>
     </div>
 
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&&language=en&region=EN"
-      defer
-    ></script>
-    <script defer src="./main.js" type="module"></script>
-  </body>
+    <div id="hideSignIn" class="hideSignIn ">
+
+      <form id="signInForm" class="zoom1">
+        <p class="signTitle">LOG IN</p>
+        <p id="loggedIn"></p>
+
+        <div class="input-field">
+          <i class="material-icons prefix black-text">email</i>
+          <input id="emailSI" type="email" spellcheck="false" value="" required>
+          <label for="emailSI">Email</label>
+
+        </div>
+
+        <div class="input-field">
+          <i class="material-icons prefix black-text">https</i>
+          <input id="passwordSI" type="password" spellcheck="false" value="" required>
+          <label for="passwordSI">Password</label>
+
+        </div>
+
+        <button id="logInButton" type="submit">LOG IN</button>
+        <p> Don't have an account? <a id="goToSingnUp" class="goTo">Sign Up</a></p>
+      </form>
+    </div>
+
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqz2vpk2RMCartjd9g92x9gaSW4yV1sJ4&&language=en&region=EN"
+    defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script defer src="./main.js" type="module"></script>
+</body>
+
 </html>

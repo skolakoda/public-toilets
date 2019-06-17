@@ -39,7 +39,7 @@ function saveRow(col0, col1, col2, col3, longitude, latitude) {
 
   fetch(urlEdit, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json', 'auth':'Bearer ${token}' },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       naslov: in1.value,
       opis: in2.value,
