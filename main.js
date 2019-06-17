@@ -5,13 +5,12 @@ import mapConfig from './helpers/mapConfig.js';
 import createInfowindow from './helpers/infowindow.js';
 import addLocation from './helpers/addLocation.js';
 import { latObj, lonObj } from './helpers/constants.js';
-import { search, showChosenLocation } from './helpers/search.js';
+import cssHelpers from './helpers/cssHelpers.js';
+import logSystem from './helpers/logSystem.js';
 
 let map;
 const allMarkers = [];
 const checkedList = document.querySelectorAll('input[name=filter]');
-const searchBtn = document.querySelector('#searchBtn');
-const searchInp = document.querySelector('#searchInp');
 const myForm = document.getElementById('myForm');
 
 function initMap() {
@@ -98,6 +97,5 @@ myForm.addEventListener('submit', addLocation);
 
 checkedList.forEach(cbox => cbox.addEventListener('change', () => toggleMarkers(cbox)));
 
-searchInp.addEventListener('keyup', search);
-
-searchBtn.addEventListener('click', () => showChosenLocation(map));
+cssHelpers();
+logSystem();
