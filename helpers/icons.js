@@ -1,9 +1,11 @@
 const iconBase1 = 'https://maps.google.com/mapfiles/kml/pal2/';
 const iconBase2 = 'https://maps.google.com/mapfiles/kml/pal3/';
 
+const toilet = 'img/marker/toilet.png';
+
 const icons = {
   default: {
-    icon: `${iconBase1}icon10.png`
+    icon: toilet
   },
   groblje: {
     icon: `${iconBase2}icon44.png`
