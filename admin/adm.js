@@ -1,16 +1,6 @@
 const nazivKolekcije = 'novogroblje/';
 const url = `https://spomenici-api.herokuapp.com/kolekcija/${nazivKolekcije}`;
 
-(function initAdm() {
-  fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(response) {
-      loadPanel(response.data);
-    });
-})();
-
 function loadPanel(promisData) {
   const data = promisData;
   const tr = document.createElement('tr');
@@ -37,7 +27,7 @@ function loadPanel(promisData) {
       in0.setAttribute('value', 'attribute');
       in0.setAttribute('id', data[j]._id);
 
-      in0.addEventListener('click', function(event) {
+      in0.addEventListener('click', (event) => {
         if (in0.checked) {
           for (let i = 0; i < arrId.length; i++) {
             const item1 = document.getElementsByClassName(arrId[i])[0];
@@ -100,7 +90,7 @@ function loadPanel(promisData) {
       in4.setAttribute('disabled', 'disabled');
       in4.setAttribute('class', 'btnSave');
       in4.classList.add(data[j]._id);
-      in4.addEventListener('click', function(event) {
+      in4.addEventListener('click', (event) => {
         saveRow(in0, in1, in2, in3, data[j].lokacija.lon, data[j].lokacija.lat);
         disableRow(in0, in1, in2, in3, in4, in5);
       });
@@ -111,7 +101,7 @@ function loadPanel(promisData) {
       in5.setAttribute('disabled', 'disabled');
       in5.setAttribute('class', 'btnDelete');
       in5.classList.add(data[j]._id);
-      in5.addEventListener('click', function(event) {
+      in5.addEventListener('click', (event) => {
         deleteRow(in0);
         disableRow(in0, in1, in2, in3, in4, in5);
       });
@@ -157,13 +147,13 @@ function saveRow(col0, col1, col2, col3, longitude, latitude) {
       lat: lt
     })
   })
-    .then(function(response) {
+    .then(response => {
       return response.json();
     })
-    .then(function() {
-      location.reload();
+    .then(() => {
+      window.location.reload();
     })
-    .catch(function(error) {
+    .catch(error => {
       console.error('Error:', error);
     });
 }
@@ -175,11 +165,11 @@ function deleteRow(col0) {
   fetch(urlDelete, {
     method: 'DELETE'
   })
-    .then(function(response) {
+    .then(response => {
       return response.json();
     })
-    .then(function() {
-      location.reload();
+    .then(() => {
+      window.location.reload();
     });
 }
 function toggle(col1, col2, col3, col4, col5) {
@@ -208,3 +198,11 @@ function setStyle(col1, col2, col3, col4, col5) {
   in4.setAttribute('style', 'color: lime');
   in5.setAttribute('style', 'color: red');
 }
+
+fetch(url)
+  .then(response => {
+    return response.json();
+  })
+  .then(response => {
+    loadPanel(response.data);
+  });
