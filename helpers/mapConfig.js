@@ -1,5 +1,3 @@
-/* global google */
-
 export default {
   center: new google.maps.LatLng(44.8086419, 20.4582411),
   zoom: 14,

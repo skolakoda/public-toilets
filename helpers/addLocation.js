@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import { latObj, lonObj } from './constants.js';
 
 function addLocation(event) {

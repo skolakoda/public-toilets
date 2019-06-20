@@ -1,4 +1,3 @@
-/* global google */
 const spomenici = [];
 const resultList = document.querySelector('#resultList');
 const searchInp = document.querySelector('#searchInp');
