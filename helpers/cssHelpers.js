@@ -1,8 +1,6 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 function cssHelpers() {
   const elem = document.querySelector('.collapsible.expandable');
-  const instance = M.Collapsible.init(elem, {
+  M.Collapsible.init(elem, {
     accordion: false
   });
 
@@ -13,11 +11,13 @@ function cssHelpers() {
   });
 
   const sign = document.querySelector('#sign');
+  const hideSignIn = document.querySelector('#hideSignIn');
   sign.addEventListener('click', () => {
     hideSignIn.style.display = 'block';
   });
 
   const goToSingnUp = document.querySelector('#goToSingnUp');
+  const hideSignUp = document.querySelector('#hideSignUp');
   goToSingnUp.addEventListener('click', () => {
     hideSignIn.style.display = 'none';
     hideSignUp.style.display = 'block';
@@ -41,4 +41,4 @@ function cssHelpers() {
   });
 }
 
-export  default cssHelpers;
+export default cssHelpers;

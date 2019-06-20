@@ -7,7 +7,13 @@
     "browser": true,
     "es6": true
   },
+  "globals": {
+    "google": false,
+    "M": false
+  },
   "rules": {
+    "import/extensions": ["always"],
+    "no-underscore-dangle": 0,
     "max-len": [
       "warn",
       {
