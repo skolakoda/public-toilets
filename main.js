@@ -1,5 +1,3 @@
-/* eslint-disable import/extensions */
-/* global google */
 import icons from './helpers/icons.js';
 import mapConfig from './helpers/mapConfig.js';
 import createInfowindow from './helpers/infowindow.js';
