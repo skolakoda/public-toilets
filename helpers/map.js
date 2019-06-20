@@ -1,4 +1,4 @@
-export default {
+const mapConfig = {
   center: new google.maps.LatLng(44.8086419, 20.4582411),
   zoom: 14,
   styles: [
@@ -119,3 +119,5 @@ export default {
   },
   fullscreenControl: true
 };
+
+export default new google.maps.Map(document.querySelector('#map'), mapConfig);
