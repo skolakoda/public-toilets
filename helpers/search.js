@@ -27,9 +27,9 @@ function search() {
       li.dataset.lon = lon;
       resultList.appendChild(li);
       resultList.style.display = 'block';
-      li.addEventListener('click', function() {
+      li.addEventListener('click', () => {
         latlng = new google.maps.LatLng(li.dataset.lat, li.dataset.lon);
-        searchInp.value = this.innerText;
+        searchInp.value = li.innerText;
         resultList.style.display = 'none';
       });
     });
