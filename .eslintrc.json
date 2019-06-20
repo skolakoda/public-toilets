@@ -13,6 +13,7 @@
   },
   "rules": {
     "import/extensions": ["always"],
+    "no-underscore-dangle": 0,
     "max-len": [
       "warn",
       {
