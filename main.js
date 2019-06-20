@@ -10,21 +10,15 @@ const allMarkers = [];
 const checkedList = document.querySelectorAll('input[name=filter]');
 const myForm = document.getElementById('myForm');
 
-function createMarker(places) {
+function createMarker({ position, type }) {
   const marker = new google.maps.Marker({
-    position: places.position,
-    icon: icons[places.type] ? icons[places.type].icon : icons.default.icon,
-    category: places.type,
+    icon: icons[type] ? icons[type].icon : icons.default.icon,
+    category: type,
+    position,
     map
   });
   allMarkers.push(marker);
   return marker;
-}
-
-function addInfowindow(marker, infowindow) {
-  marker.addListener('click', () => {
-    infowindow.open(map, marker);
-  });
 }
 
 function displayLocations(spomenici) {
@@ -46,7 +40,8 @@ function displayLocations(spomenici) {
         </article>
       </div>
     `;
-    addInfowindow(marker, createInfowindow(infowindowContent));
+    const infowindow = createInfowindow(infowindowContent);
+    marker.addListener('click', () => infowindow.open(map, marker));
   });
 }
 
@@ -58,10 +53,10 @@ fetch('https://spomenici-api.herokuapp.com/kolekcija/novogroblje')
 
 const myLocationIcon = document.querySelector('#my_location');
 myLocationIcon.onclick = () => {
-  navigator.geolocation.getCurrentPosition(position => {
+  navigator.geolocation.getCurrentPosition(({ coords }) => {
     const pos = {
-      lat: position.coords.latitude,
-      lng: position.coords.longitude
+      lat: coords.latitude,
+      lng: coords.longitude
     };
     map.setCenter(pos);
     map.setZoom(18);
