@@ -1,13 +1,98 @@
-const nazivKolekcije = 'novogroblje/';
-const url = `https://spomenici-api.herokuapp.com/kolekcija/${nazivKolekcije}`;
+/* const nazivKolekcije = 'novogroblje/'; */
+const nazivKolekcije1 = 'toilets/';
+const url = `https://spomenici-api.herokuapp.com/kolekcija/${nazivKolekcije1}`;
 
+function disableRow(edit, naslov, opis, kategorija, save, del) {
+  const in0 = edit;
+  const in1 = naslov;
+  const in2 = opis;
+  const in3 = kategorija;
+  const in4 = save;
+  const in5 = del;
+  in0.checked = false;
+  in1.disabled = true;
+  in2.disabled = true;
+  in3.disabled = true;
+  in4.disabled = true;
+  in5.disabled = true;
+}
+function saveRow(col0, col1, col2, col3, longitude, latitude) {
+  const in0 = col0;
+  const in1 = col1;
+  const in2 = col2;
+  const in3 = col3;
+  const ln = longitude;
+  const lt = latitude;
+  const urlEdit = `${url}uredi/${in0.id}`;
+  fetch(urlEdit, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json', Auth: `Bearer ${localStorage.token}` },
+    body: JSON.stringify({
+      naslov: in1.value,
+      opis: in2.value,
+      kategorija: in3.value,
+      lon: ln,
+      lat: lt
+    })
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(() => {
+      window.location.reload();
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
+function deleteRow(col0) {
+  const in0 = col0;
+  const urlDelete = `${url}obrisi/${in0.id}`;
+
+  fetch(urlDelete, {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json', Auth: `Bearer ${localStorage.token}` }
+  })
+    .then(response => {
+      return response.json();
+    })
+    .then(() => {
+      window.location.reload();
+    });
+}
+function toggle(col1, col2, col3, col4, col5) {
+  const in1 = col1;
+  const in2 = col2;
+  const in3 = col3;
+  const in4 = col4;
+  const in5 = col5;
+
+  in1.disabled = !in1.disabled;
+  in2.disabled = !in2.disabled;
+  in3.disabled = !in3.disabled;
+  in4.disabled = !in4.disabled;
+  in5.disabled = !in5.disabled;
+}
+function setStyle(col1, col2, col3, col4, col5) {
+  const in1 = col1;
+  const in2 = col2;
+  const in3 = col3;
+  const in4 = col4;
+  const in5 = col5;
+
+  in1.setAttribute('style', 'color: grey');
+  in2.setAttribute('style', 'color: grey');
+  in3.setAttribute('style', 'color: grey');
+  in4.setAttribute('style', 'color: lime');
+  in5.setAttribute('style', 'color: red');
+}
 function loadPanel(promisData) {
   const data = promisData;
   const tr = document.createElement('tr');
   const arrId = [];
-  for (let i = 0; i < data.length; i++) {
+  for (let i = 0; i < data.length; i += 1) {
     const tr1 = document.createElement('tr');
-    for (let j = i; j < data.length; j++) {
+    for (let j = i; j < data.length; j += 1) {
       const td0 = document.createElement('td');
       const td1 = document.createElement('td');
       const td2 = document.createElement('td');
@@ -27,14 +112,14 @@ function loadPanel(promisData) {
       in0.setAttribute('value', 'attribute');
       in0.setAttribute('id', data[j]._id);
 
-      in0.addEventListener('click', (event) => {
+      in0.addEventListener('click', () => {
         if (in0.checked) {
-          for (let i = 0; i < arrId.length; i++) {
-            const item1 = document.getElementsByClassName(arrId[i])[0];
-            const item2 = document.getElementsByClassName(arrId[i])[1];
-            const item3 = document.getElementsByClassName(arrId[i])[2];
-            const item4 = document.getElementsByClassName(arrId[i])[3];
-            const item5 = document.getElementsByClassName(arrId[i])[4];
+          for (let l = 0; l < arrId.length; l += 1) {
+            const item1 = document.getElementsByClassName(arrId[l])[0];
+            const item2 = document.getElementsByClassName(arrId[l])[1];
+            const item3 = document.getElementsByClassName(arrId[l])[2];
+            const item4 = document.getElementsByClassName(arrId[l])[3];
+            const item5 = document.getElementsByClassName(arrId[l])[4];
             if (
               in0.id !== item1.getAttribute('class') ||
               in0.id !== item2.getAttribute('class') ||
@@ -90,7 +175,7 @@ function loadPanel(promisData) {
       in4.setAttribute('disabled', 'disabled');
       in4.setAttribute('class', 'btnSave');
       in4.classList.add(data[j]._id);
-      in4.addEventListener('click', (event) => {
+      in4.addEventListener('click', () => {
         saveRow(in0, in1, in2, in3, data[j].lokacija.lon, data[j].lokacija.lat);
         disableRow(in0, in1, in2, in3, in4, in5);
       });
@@ -101,7 +186,7 @@ function loadPanel(promisData) {
       in5.setAttribute('disabled', 'disabled');
       in5.setAttribute('class', 'btnDelete');
       in5.classList.add(data[j]._id);
-      in5.addEventListener('click', (event) => {
+      in5.addEventListener('click', () => {
         deleteRow(in0);
         disableRow(in0, in1, in2, in3, in4, in5);
       });
@@ -113,90 +198,6 @@ function loadPanel(promisData) {
     }
     document.getElementById('data').appendChild(tr);
   }
-}
-function disableRow(edit, naslov, opis, kategorija, save, del) {
-  const in0 = edit;
-  const in1 = naslov;
-  const in2 = opis;
-  const in3 = kategorija;
-  const in4 = save;
-  const in5 = del;
-  in0.checked = false;
-  in1.disabled = true;
-  in2.disabled = true;
-  in3.disabled = true;
-  in4.disabled = true;
-  in5.disabled = true;
-}
-function saveRow(col0, col1, col2, col3, longitude, latitude) {
-  const in0 = col0;
-  const in1 = col1;
-  const in2 = col2;
-  const in3 = col3;
-  const ln = longitude;
-  const lt = latitude;
-  const urlEdit = `${url}uredi/${in0.id}`;
-  fetch(urlEdit, {
-    method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      naslov: in1.value,
-      opis: in2.value,
-      kategorija: in3.value,
-      lon: ln,
-      lat: lt
-    })
-  })
-    .then(response => {
-      return response.json();
-    })
-    .then(() => {
-      window.location.reload();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
-}
-function deleteRow(col0) {
-  const in0 = col0;
-  const urlDelete = `${url}obrisi/${in0.id}`;
-  console.log(urlDelete);
-
-  fetch(urlDelete, {
-    method: 'DELETE'
-  })
-    .then(response => {
-      return response.json();
-    })
-    .then(() => {
-      window.location.reload();
-    });
-}
-function toggle(col1, col2, col3, col4, col5) {
-  const in1 = col1;
-  const in2 = col2;
-  const in3 = col3;
-  const in4 = col4;
-  const in5 = col5;
-
-  in1.disabled = !in1.disabled;
-  in2.disabled = !in2.disabled;
-  in3.disabled = !in3.disabled;
-  in4.disabled = !in4.disabled;
-  in5.disabled = !in5.disabled;
-}
-function setStyle(col1, col2, col3, col4, col5) {
-  const in1 = col1;
-  const in2 = col2;
-  const in3 = col3;
-  const in4 = col4;
-  const in5 = col5;
-
-  in1.setAttribute('style', 'color: grey');
-  in2.setAttribute('style', 'color: grey');
-  in3.setAttribute('style', 'color: grey');
-  in4.setAttribute('style', 'color: lime');
-  in5.setAttribute('style', 'color: red');
 }
 
 fetch(url)

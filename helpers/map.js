@@ -7,7 +7,7 @@ const mapConfig = {
       elementType: 'labels.text.fill',
       stylers: [
         {
-          color: '#444444'
+          color: '#263238'
         }
       ]
     },
@@ -34,7 +34,7 @@ const mapConfig = {
       elementType: 'geometry.fill',
       stylers: [
         {
-          color: '#afd7a2'
+          color: '#90b892'
         },
         {
           visibility: 'on'
@@ -95,7 +95,7 @@ const mapConfig = {
       elementType: 'all',
       stylers: [
         {
-          color: '#91a4b3'
+          color: '#8cabb6'
         },
         {
           visibility: 'on'
