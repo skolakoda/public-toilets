@@ -4,12 +4,6 @@ function cssHelpers() {
     accordion: false
   });
 
-  const menu = document.querySelector('#menu');
-  const mainSite = document.querySelector('#mainSite');
-  menu.addEventListener('click', () => {
-    mainSite.classList.toggle('hidden');
-  });
-
   const sign = document.querySelector('#sign');
   const hideSignIn = document.querySelector('#hideSignIn');
   sign.addEventListener('click', () => {
@@ -28,17 +22,38 @@ function cssHelpers() {
     hideSignIn.style.display = 'block';
     hideSignUp.style.display = 'none';
   });
+  window.addEventListener('click', event => {
+    if (event.target === hideSignUp) {
+      hideSignUp.style.display = 'none';
+    }
+  });
 
+  window.addEventListener('click', event => {
+    if (event.target === hideSignIn) {
+      hideSignIn.style.display = 'none';
+    }
+  });
+
+  const hamburger = document.querySelector('#hamburger-menu');
+  const mainSite = document.querySelector('#mainSite');
   const line1 = document.querySelector('#line1');
   const line2 = document.querySelector('#line2');
   const line3 = document.querySelector('#line3');
 
-  const switch1 = document.querySelector('.switch');
-  switch1.addEventListener('click', () => {
+  hamburger.addEventListener('click', () => {
     line1.classList.toggle('line1S');
     line2.classList.toggle('line2S');
     line3.classList.toggle('line3S');
+    mainSite.classList.toggle('hidden');
   });
+
+  mainSite.onscroll = () => {
+    if (mainSite.scrollTop === 0) {
+      hamburger.style.zIndex = '1';
+    } else {
+      hamburger.style.zIndex = '0';
+    }
+  };
 }
 
 export default cssHelpers;

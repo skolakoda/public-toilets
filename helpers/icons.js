@@ -1,24 +1,29 @@
-const iconBase1 = 'https://maps.google.com/mapfiles/kml/pal2/';
-const iconBase2 = 'https://maps.google.com/mapfiles/kml/pal3/';
-
-const toilet = 'img/marker/toilet.png';
+const toiletBlack = 'img/marker/toilet-black.png';
+const toiletRed = 'img/marker/toilet-red.png';
+const toiletYellow = 'img/marker/toilet-yellow.png';
+const toiletBlue = 'img/marker/toilet-blue.png';
+const toiletPurple = 'img/marker/toilet-purple.png';
+/* const toiletOrange = 'img/marker/toilet-orange.png';
+const toiletPink = 'img/marker/toilet-pink.png';
+const toiletGreen = 'img/marker/toilet-green.png';
+const toiletLightBlue = 'img/marker/toilet-light-blue.png'; */
 
 const icons = {
   default: {
-    icon: toilet
+    icon: toiletPurple
   },
-  groblje: {
-    icon: `${iconBase2}icon44.png`
+  publictoilet: {
+    icon: toiletRed
   },
-  spomenici: {
-    icon: `${iconBase1}icon32.png`
+  mall: {
+    icon: toiletYellow
   },
-  restoran: {
-    icon: `${iconBase2}icon47.png`
+  gasstation: {
+    icon: toiletBlue
   },
   other: {
-    icon: `${iconBase2}icon26.png`
+    icon: toiletBlack
   }
 };
 
-export { icons as default };
+export default icons;

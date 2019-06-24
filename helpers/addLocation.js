@@ -1,27 +1,23 @@
-import { latObj, lonObj } from './constants.js';
-
 function addLocation(event) {
   event.preventDefault();
-  const naslov = document.getElementById('naslov').value;
-  const opis = document.getElementById('opis').value;
-  const kategorija = document.getElementById('kategorija').value;
-  const slika = document.getElementById('slika').value;
-  const lat = latObj.value;
-  const lon = lonObj.value;
+  if (!localStorage.token) {
+    const hideSignIn = document.querySelector('#hideSignIn');
+    const loggedIn = document.querySelector('#loggedIn');
+    hideSignIn.style.display = 'block';
+    loggedIn.style.color = '#f44336';
+    loggedIn.innerHTML = 'Please log in first to add toilet!';
+    return;
+  }
 
-  fetch('https://spomenici-api.herokuapp.com/kolekcija/novogroblje/dodaj', {
+  const forma = document.getElementById('myForm');
+  const formData = new FormData(forma);
+
+  fetch('https://spomenici-api.herokuapp.com/kolekcija/toilets/dodaj', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      naslov,
-      opis,
-      kategorija,
-      slika,
-      lat,
-      lon
-    })
+    headers: { Auth: `Bearer ${localStorage.token}` },
+    body: formData
   }).then(response => {
-    response.json(); // ovo je suvisno ako se ne koristi odgovor
+    response.json();
     window.location.reload();
   });
 }

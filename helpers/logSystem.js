@@ -11,6 +11,7 @@ function logSystem() {
   const wrongPassword = document.querySelector('#wrongPassword');
   const wrongRepeatPassword = document.querySelector('#wrongRepeatPassword');
   const loggedIn = document.querySelector('#loggedIn');
+  const signedUp = document.querySelector('#signedUp');
   const regEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const regUppercaseLetter = /[A-Z]/;
   const regLowercaseLetter = /[a-z]/;
@@ -21,20 +22,8 @@ function logSystem() {
   const progressSign = document.querySelector('#progressSign');
   const progressLog = document.querySelector('#progressLog');
   const signBtn = document.querySelector('#sign');
-
   const hideSignUp = document.querySelector('#hideSignUp');
-  window.addEventListener('click', event => {
-    if (event.target === hideSignUp) {
-      hideSignUp.style.display = 'none';
-    }
-  });
-
   const hideSignIn = document.querySelector('#hideSignIn');
-  window.addEventListener('click', event => {
-    if (event.target === hideSignIn) {
-      hideSignIn.style.display = 'none';
-    }
-  });
 
   const checkEmail = (value, msgField) => {
     if (!regEmail.test(value)) {
@@ -164,34 +153,57 @@ function logSystem() {
     }, 500);
   });
 
+  const logInScenario = () => {
+    if (localStorage.getItem('token') === 'null' || localStorage.getItem('token') === 'undefined') {
+      progressLog.style.display = 'none';
+      loggedIn.style.color = '#f44336';
+      loggedIn.innerHTML = "Something's wrong! Please try again.";
+      return;
+    }
+    loggedIn.style.color = '#00695c';
+    loggedIn.innerHTML = 'You are logged in with:';
+    hideSignIn.style.display = 'none';
+    signBtn.style.display = 'none';
+    progressLog.style.display = 'block';
+
+    setTimeout(() => {
+      progressLog.style.display = 'none';
+      signBtn.style.display = 'block';
+    }, 2000);
+    signBtn.classList.replace('white-text', 'myGreen');
+  };
+
   signUpForm.addEventListener('submit', e => {
     e.preventDefault();
     if (testEmail(testMail) && testPassword(testPass) && testRepeatPassword(testRepeatPass)) {
       const email = testMail.value;
-      const password = testPass.value;
-      const repeatPassword = testRepeatPass.value;
+      const pass = testPass.value;
+      const repeatPass = testRepeatPass.value;
       progressSign.style.display = 'block';
       fetch('https://spomenici-api.herokuapp.com/korisnici/registracija', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, repeatPassword })
+        body: JSON.stringify({ email, pass, repeatPass })
       })
         .then(response => response.json())
         .then(response => {
-
           setTimeout(() => {
-            progressLog.style.display = 'none';
+            progressSign.style.display = 'none';
           }, 1000);
-
-          loggedIn.innerHTML = `${response.message}Please log in now!`;
-          hideSignUp.style.display = 'none';
-          hideSignIn.style.display = 'block';
+          setTimeout(() => {
+            signedUp.style.color = '#00695c';
+            signedUp.innerHTML = `${response.status}</br> Registered with an email.</br> Please log in now!`;
+          }, 2000);
+          setTimeout(() => {
+            hideSignUp.style.display = 'none';
+            hideSignIn.style.display = 'block';
+          }, 5000);
         })
-        .catch(err => {     
-            progressLog.style.display = 'none';
-            loggedIn.innerHTML = response.message;
-        })
-        
+        .catch(error => {
+          progressSign.style.display = 'none';
+          signedUp.style.color = '#f44336';
+          signedUp.innerHTML = `${error}</br> Please try again!`;
+        });
     }
   });
 
@@ -200,27 +212,22 @@ function logSystem() {
     const testMail1 = document.querySelector('#emailSI');
     const testPass1 = document.querySelector('#passwordSI');
     const email = testMail1.value;
-    const password = testPass1.value;
+    const pass = testPass1.value;
     fetch('https://spomenici-api.herokuapp.com/korisnici/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      body: JSON.stringify({ email, pass })
     })
       .then(response => response.json())
       .then(response => {
         localStorage.setItem('token', response.data);
-        loggedIn.innerHTML = 'You are logged in with:';
-        hideSignIn.style.display = 'none';
-        signBtn.style.display = 'none';
-        progressLog.style.display = 'block';
-
-        setTimeout(() => {
-          progressLog.style.display = 'none';
-          signBtn.style.display = 'block';
-        }, 2000);
-        signBtn.classList.replace('red-text', 'myGreen');
+        logInScenario();
       });
   });
+
+  if (localStorage.token && localStorage.getItem('token') !== 'null') {
+    signBtn.classList.replace('white-text', 'myGreen');
+  }
 }
 
 export default logSystem;
