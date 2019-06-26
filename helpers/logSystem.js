@@ -147,7 +147,7 @@ function logSystem() {
     }, 500);
   });
 
-  testRepeatPass.addEventListener('focusout', () => {
+  testRepeatPass.addEventListener('keyup', () => {
     setTimeout(() => {
       testRepeatPassword(testRepeatPass);
     }, 500);
