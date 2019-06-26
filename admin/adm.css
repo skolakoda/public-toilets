@@ -3,11 +3,10 @@
     margin: 0;
     box-sizing: border-box;
 }
-p{
-    /* font-size: 1.5em; */
+p{    
     font-size: 24px;
     text-align: center;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0 5px 0;
     color: orange;
     background: -webkit-linear-gradient(59deg, #3A6073, #16222A);
     background: linear-gradient(59deg, #3A6073, #16222A); 
@@ -32,8 +31,7 @@ td{
     width: 16.6%;    
 }
 th{
-    background-color: #3A6073;    
-    /* width: 17%; */
+    background-color: #3A6073;        
     color: white;    
     height: 35px;
     font-size: 0.8em;
@@ -64,7 +62,7 @@ input{
 }
 .styleInput{
     margin: 0;
-    padding: 0px 0px 0px 5px;
+    padding: 0 0 0 5px;
     color: white;
     background-color: #16222A;
     width: 100%;

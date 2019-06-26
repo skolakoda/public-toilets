@@ -36,17 +36,6 @@ function saveRow(col0, col1, col2, col3, longitude, latitude) {
   const lt = latitude;
   const urlEdit = `${url}uredi/${in0.id}`;
   const token = localStorage.getItem('token');
-  /* console.log('urlEdit: ', urlEdit); */
-
-  /* let editBody = {
-    naslov: in1.value,
-    opis: in2.value,
-    kategorija: in3.value,
-    lon: ln,
-    lat: lt
-  }; */
-
-  /* editBody = JSON.stringify(editBody); */
 
   fetch(urlEdit, {
     method: 'PUT',
@@ -59,10 +48,7 @@ function saveRow(col0, col1, col2, col3, longitude, latitude) {
       lat: lt
     })
   })
-    .then(response => {
-      /* console.log(response); */
-      return response.json();
-    })
+    .then(response => response.json())
     .then(() => window.location.reload());
 }
 function deleteRow(col0) {
