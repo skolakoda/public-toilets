@@ -97,11 +97,10 @@ ul {
 	width: 340px;
 	border-radius: 7px;
 	border-bottom-right-radius: 40px 30px;
-	transition: .7s;
 }
 
 .hidden {
-	opacity: 0;
+	display: none;
 }
 
 img {

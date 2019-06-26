@@ -1,6 +1,6 @@
 const mapConfig = {
   center: new google.maps.LatLng(44.8086419, 20.4582411),
-  zoom: 14,
+  zoom: 11,
   styles: [
     {
       featureType: 'administrative',
