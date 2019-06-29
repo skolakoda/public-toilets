@@ -7,7 +7,7 @@ let end;
 function rad(x) {
   return (x * Math.PI) / 180;
 }
-function findNearestMarker(lat, lng) {
+function findClosestMarker(lat, lng) {
   const R = 6371; // radius of earth in km
   const distances = [];
   let closest = -1;
@@ -43,26 +43,21 @@ function drawRoute() {
     }
   });
 }
-function findNearest(lat, lng) {
-  const nearestMarker = allMarkers[findNearestMarker(lat, lng)];
-  map.panTo(nearestMarker.getPosition());
+function findClosestToilet(lat, lng) {
+  const nearestMarker = allMarkers[findClosestMarker(lat, lng)];
   end = `${nearestMarker.getPosition().lat()},${nearestMarker.getPosition().lng()}`;
   map.setZoom(14);
   drawRoute();
 }
-function findNearestLocation(markers) {
+function displayPath(markers) {
   allMarkers = markers;
-  let pos;
   navigator.geolocation.getCurrentPosition(({ coords }) => {
-    pos = {
+    const pos = {
       lat: coords.latitude,
       lng: coords.longitude
     };
     start = `${pos.lat},${pos.lng}`;
+    findClosestToilet(pos.lat, pos.lng);
   });
-  function ab() {
-    findNearest(pos.lat, pos.lng);
-  }
-  setTimeout(ab, 1000);
 }
-export default findNearestLocation;
+export default displayPath;

@@ -5,7 +5,7 @@ import addLocation from './helpers/addLocation.js';
 import { latObj, lonObj } from './helpers/constants.js';
 import cssHelpers from './helpers/cssHelpers.js';
 import logSystem from './helpers/logSystem.js';
-import findNearestLocation from './helpers/closestToilet.js';
+import displayPath from './helpers/closestToilet.js';
 
 const allMarkers = [];
 const checkedList = document.querySelectorAll('input[name=filter]');
@@ -95,7 +95,7 @@ myForm.addEventListener('submit', addLocation);
 checkedList.forEach(cbox => cbox.addEventListener('change', () => toggleMarkers(cbox)));
 
 emergency.addEventListener('click', () => {
-  findNearestLocation(allMarkers);
+  displayPath(allMarkers);
 });
 
 cssHelpers();
