@@ -39,7 +39,7 @@ function saveRow(col0, col1, col2, col3, longitude, latitude) {
 
   fetch(urlEdit, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json', auth: `Bearer ${token}` },
+    headers: { 'Content-Type': 'application/json', 'x-auth-token': `${localStorage.token}` },
     body: JSON.stringify({
       naslov: in1.value,
       opis: in2.value,
@@ -57,7 +57,7 @@ function deleteRow(col0) {
   const token = localStorage.getItem('token');
   fetch(urlDelete, {
     method: 'DELETE',
-    headers: { 'Content-Type': 'application/json', auth: `Bearer ${token}` }
+    headers: { 'Content-Type': 'application/json', 'x-auth-token': `${localStorage.token}` }
   })
     .then(response => response.json())
     .then(() => window.location.reload());
