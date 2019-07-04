@@ -14,7 +14,7 @@ function addLocation(event) {
 
   fetch('https://spomenici-api.herokuapp.com/kolekcija/toilets/dodaj', {
     method: 'POST',
-    headers: { Auth: `Bearer ${localStorage.token}` },
+    headers: { 'x-auth-token': `${localStorage.token}` },
     body: formData
   }).then(response => {
     response.json();

@@ -177,13 +177,13 @@ function logSystem() {
     e.preventDefault();
     if (testEmail(testMail) && testPassword(testPass) && testRepeatPassword(testRepeatPass)) {
       const email = testMail.value;
-      const pass = testPass.value;
-      const repeatPass = testRepeatPass.value;
+      const password = testPass.value;
+      const repeatPassword = testRepeatPass.value;
       progressSign.style.display = 'block';
       fetch('https://spomenici-api.herokuapp.com/korisnici/registracija', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, pass, repeatPass })
+        body: JSON.stringify({ email, password, repeatPassword })
       })
         .then(response => response.json())
         .then(response => {
@@ -212,11 +212,11 @@ function logSystem() {
     const testMail1 = document.querySelector('#emailSI');
     const testPass1 = document.querySelector('#passwordSI');
     const email = testMail1.value;
-    const pass = testPass1.value;
+    const password = testPass1.value;
     fetch('https://spomenici-api.herokuapp.com/korisnici/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, pass })
+      body: JSON.stringify({ email, password })
     })
       .then(response => response.json())
       .then(response => {
